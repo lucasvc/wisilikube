@@ -75,8 +75,6 @@ function minik8s()
 
     curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
 
-    minikube addons enable ingress
-
     echo "#> minik8s end"
 }
 
@@ -93,6 +91,10 @@ function user_create()
     passwd --delete ${USERNAME}
     usermod -L ${USERNAME}
     echo "${USERNAME} ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
+    cat >> /etc/wsl.conf <<-EOF
+[user]
+default=${USERNAME}
+EOF
 
     echo "#> user_create end"
 }
