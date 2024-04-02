@@ -5,12 +5,14 @@ function system()
 {
     echo "#> system start"
 
-    apt-get -y update && apt -y upgrade
-    apt-get install -y \
-    apt-transport-https \
-    ca-certificates \
-    curl \
-    software-properties-common
+    sed -i 's/#$nrconf{restart} = '"'"'i'"'"';/$nrconf{restart} = '"'"'a'"'"';/g' /etc/needrestart/needrestart.conf
+
+    apt-get -y update && apt-get -y upgrade
+    apt-get -y install \
+        apt-transport-https \
+        ca-certificates \
+        curl \
+        software-properties-common
     cat > /usr/local/sbin/update_and_clean <<'EOF'
 #!/usr/bin/env bash
 apt-get -y update && \
