@@ -26,8 +26,8 @@ Execute,
 
 ### Options
 
-| Option | Description |
-| ------ | ----------- |
+| Option       | Description |
+| ------------ | ----------- |
 |`Destination` | Can be used to select installation folder |
 
 ## Export
@@ -39,7 +39,7 @@ Execute,
 
 ## Usage
 
-Once installed execute the file,
+Once installed execute the command,
 
 ```
 wsl -d wisilikube
@@ -60,10 +60,6 @@ To start a Minikube cluster.
 
 Currently Ubuntu version is hardcoded in the `Install.ps1` script, a version selector can be developed using [meta-release](https://changelogs.ubuntu.com/meta-release).
 
-### Better `make` commands
-
-`TODO` pointeds in this file.
-
 ### Fresh start is slow
 
 Fresh start (opening first shell after computer start/WSL-shutdown) is slow, ~30 seconds.
@@ -72,4 +68,8 @@ Next steps is to replace Server with the Base flavor installing **only** those r
 
 ### Publish Docker daemon
 
-Even I created a simpler Docker daemon distro (dodaemon), why having two separate Docker daemons? Ideally this will replace the simpler one as main WSL distro.
+Even I created an only Docker daemon distro ([dodaemon](https://github.com/lucasvc/dodaemon)), why having two separate Docker daemons? Ideally this will replace as the Docker daemon distro.
+
+### More `make` commands
+
+Export, Uninstall, ?
