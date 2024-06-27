@@ -6,6 +6,20 @@ param (
     [string]$Destination
 )
 
+# `wsl --list` command output uses _local_ characters, so iterate over the registry
+ForEach ($Distro in Get-ChildItem "HKCU:\Software\Microsoft\Windows\CurrentVersion\Lxss") {
+    $Name = ($Distro | Get-ItemProperty -Name DistributionName).DistributionName
+    If ("wisilikube" -eq ${Name}) {
+        $Remove = Read-Host "Named 'wisilikube' distro already installed. Do you want to remove it? yes / <anything>"
+        If (${Remove} -ne "yes") { 
+            "ERROR: Installation can't continue."
+            exit 1
+        }
+        wsl --unregister wisilikube
+        Break
+    }
+}
+
 If ([string]::IsNullOrEmpty(${env:USERNAME})) {
     "ERROR: Required environment variable `USERNAME` not found (value=${env:USERNAME})"
     exit 1
