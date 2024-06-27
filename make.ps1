@@ -3,8 +3,9 @@ param(
 )
 
 if (!$_Command) {
-    foreach($_ in Get-ChildItem $PSScriptRoot\Command -Name) {
-        [System.IO.Path]::GetFileNameWithoutExtension($_)
+    "No command provided, please use one of the followings,"
+    foreach($_ in Get-ChildItem $PSScriptRoot\Command -File -Name -Filter *.ps1) {
+        "    " + [System.IO.Path]::GetFileNameWithoutExtension($_)
     }
     return
 }
